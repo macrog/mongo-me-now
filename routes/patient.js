@@ -32,4 +32,14 @@ router.get("/patient", async (req, res) => {
     }
 });
 
+router.post("/patient", async (req, res) => {
+    const patient = new Patient(req.body);
+    try {
+        await patient.save();
+        res.status(201).send(patient);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;
