@@ -12,4 +12,15 @@ router.get("/patient", async (req, res) => {
     }
 });
 
+router.get("/patientSearch", async (req, res) => {
+    try {
+        const searchResults = await Users.find({
+            name: { $regex: `^${req.params.patientName}`, $options: "i" },
+        }).select(["name"]);
+        res.status(200).send(searchResults);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;
