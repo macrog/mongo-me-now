@@ -5,19 +5,28 @@ const router = new express.Router();
 
 router.get("/patient", async (req, res) => {
     try {
-        const patients = await Patient.find({});
-        res.status(200).send(patients);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-});
-
-router.get("/patientSearch", async (req, res) => {
-    try {
-        const searchResults = await Users.find({
-            name: { $regex: `^${req.params.patientName}`, $options: "i" },
-        }).select(["name"]);
-        res.status(200).send(searchResults);
+        if (!!req.query.patientName) {
+            const searchResults = await Patient.find({
+                $or: [
+                    {
+                        name: {
+                            $regex: `${req.query.patientName}`,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        surname: {
+                            $regex: `${req.query.patientName}`,
+                            $options: "i",
+                        },
+                    },
+                ],
+            });
+            res.status(200).send(searchResults);
+        } else {
+            const patients = await Patient.find({});
+            res.status(200).send(patients);
+        }
     } catch (error) {
         res.status(500).send(error);
     }
