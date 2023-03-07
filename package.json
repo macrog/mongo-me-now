@@ -15,6 +15,7 @@
   "homepage": "https://github.com/cyclic-software/mongo-me-now#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "4.14.0"
+    "mongodb": "4.14.0",
+    "mongoose": "^7.0.1"
   }
 }

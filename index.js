@@ -1,31 +1,12 @@
-const express = require('express')
-const app = express()
-const {MongoClient} = require('mongodb');
+const express = require("express");
+const patientRouter = require("./routes/patient");
 
+require("./db/mongoose");
 
-async function main(){
+const app = express();
 
-    const uri = "mongodb+srv://sana:sana2023@sana.ykms8wg.mongodb.net/test"
-    const client = new MongoClient(uri);
- 
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
- 
-        // Make the appropriate DB calls
-        await  listDatabases(client);
- 
-    } catch (e) {
-        console.error(e);
-    } finally {
-        await client.close();
-    }
-}
+app.use(express.json());
 
-main().catch(console.error);
+app.use(patientRouter);
 
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yo!')
-})
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000);
