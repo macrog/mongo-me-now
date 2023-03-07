@@ -1,10 +1,11 @@
 const express = require("express");
-require("cors");
+const cors = require("cors");
 const patientRouter = require("./routes/patient");
 
 require("./db/mongoose");
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
