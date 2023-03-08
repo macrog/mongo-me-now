@@ -60,4 +60,27 @@ router.post("/patient", async (req, res) => {
     }
 });
 
+router.get("/patient/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const onePatent = await Patient.findOne({ _id: id });
+
+        res.status(200).send(onePatent);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+router.delete("/patient/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await Patient.deleteOne({ _id: id });
+        res.status(200).send({
+            message: `object with id ${id} has been deleted`,
+        });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;
