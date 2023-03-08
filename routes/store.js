@@ -12,7 +12,7 @@ router.get("/store", async (req, res) => {
             res.status(200).send(queryStore);
         } else {
             const store = await Store.find({});
-            res.status(200).send(history);
+            res.status(200).send(hisstoretory);
         }
     } catch (error) {
         res.status(500).send(error);
@@ -31,10 +31,10 @@ router.get("/store/:id", async (req, res) => {
 });
 
 router.post("/store", async (req, res) => {
-    const history = new Store(req.body);
+    const store = new Store(req.body);
     try {
-        await history.save();
-        res.status(201).send(history);
+        await store.save();
+        res.status(201).send(store);
     } catch (error) {
         res.status(500).send(error);
     }
