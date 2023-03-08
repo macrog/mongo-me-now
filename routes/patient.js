@@ -20,6 +20,24 @@ router.get("/patient", async (req, res) => {
                             $options: "i",
                         },
                     },
+                    {
+                        email: {
+                            $regex: `${req.query.patientName}`,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        phone: {
+                            $regex: `${req.query.patientName}`,
+                            $options: "i",
+                        },
+                    },
+                    {
+                        location: {
+                            $regex: `${req.query.patientName}`,
+                            $options: "i",
+                        },
+                    },
                 ],
             });
             res.status(200).send(searchResults);
