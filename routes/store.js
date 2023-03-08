@@ -12,7 +12,7 @@ router.get("/store", async (req, res) => {
             res.status(200).send(queryStore);
         } else {
             const store = await Store.find({});
-            res.status(200).send(hisstoretory);
+            res.status(200).send(store);
         }
     } catch (error) {
         res.status(500).send(error);
