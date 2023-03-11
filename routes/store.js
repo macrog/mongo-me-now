@@ -40,6 +40,17 @@ router.post("/store", async (req, res) => {
     }
 });
 
+router.put("/store/:id", async (req, res) => {
+    const { id } = req.params;
+    const update = req.body;
+    try {
+        let response = await Store.findOneAndUpdate({ _id: id }, update);
+        res.status(200).send(response);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.delete("/store/:id", async (req, res) => {
     const { id } = req.params;
     try {

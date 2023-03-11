@@ -50,6 +50,17 @@ router.get("/patient", async (req, res) => {
     }
 });
 
+router.get("/patient/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        const onePatent = await Patient.findOne({ _id: id });
+
+        res.status(200).send(onePatent);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.post("/patient", async (req, res) => {
     const patient = new Patient(req.body);
     try {
@@ -60,12 +71,12 @@ router.post("/patient", async (req, res) => {
     }
 });
 
-router.get("/patient/:id", async (req, res) => {
+router.put("/patient/:id", async (req, res) => {
     const { id } = req.params;
+    const update = req.body;
     try {
-        const onePatent = await Patient.findOne({ _id: id });
-
-        res.status(200).send(onePatent);
+        let response = await Patient.findOneAndUpdate({ _id: id }, update);
+        res.status(200).send(response);
     } catch (error) {
         res.status(500).send(error);
     }

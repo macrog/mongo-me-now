@@ -40,6 +40,17 @@ router.post("/history", async (req, res) => {
     }
 });
 
+router.put("/history/:id", async (req, res) => {
+    const { id } = req.params;
+    const update = req.body;
+    try {
+        let response = await History.findOneAndUpdate({ _id: id }, update);
+        res.status(200).send(response);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.delete("/history/:id", async (req, res) => {
     const { id } = req.params;
     try {
