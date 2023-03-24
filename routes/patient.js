@@ -75,8 +75,14 @@ router.put("/patient/:id", async (req, res) => {
     const { id } = req.params;
     const update = req.body;
     try {
-        let response = await Patient.findOneAndUpdate({ _id: id }, update);
-        res.status(200).send(response);
+        const updatedPatent = await Patient.findOneAndUpdate(
+            { _id: id },
+            update,
+            {
+                new: true,
+            }
+        );
+        res.status(200).send(updatedPatent);
     } catch (error) {
         res.status(500).send(error);
     }
