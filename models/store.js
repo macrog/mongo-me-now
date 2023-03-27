@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const storeSchema = new mongoose.Schema(
     {
         id: Number,
-        pointMinus: String,
-        pontPlus: String,
+        negativePoint: String,
+        positivePoint: String,
         name: String,
         type: String,
         image: String,
