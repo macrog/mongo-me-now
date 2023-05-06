@@ -1,60 +1,60 @@
 const express = require("express");
-const History = require("../models/history");
+const Visit = require("../models/visit");
 
 const router = new express.Router();
 
-router.get("/history", async (req, res) => {
+router.get("/visit", async (req, res) => {
     try {
         if (!!req.query.patientId) {
-            const queryHistory = await History.find({
+            const queryVisit = await Visit.find({
                 patientId: req.query.patientId,
             });
-            res.status(200).send(queryHistory);
+            res.status(200).send(queryVisit);
         } else {
-            const history = await History.find({});
-            res.status(200).send(history);
+            const visit = await Visit.find({});
+            res.status(200).send(visit);
         }
     } catch (error) {
         res.status(500).send(error);
     }
 });
 
-router.get("/history/:id", async (req, res) => {
+router.get("/visit/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        const oneHistory = await History.findOne({ _id: id });
+        const oneVisit = await Visit.findOne({ _id: id });
 
-        res.status(200).send(oneHistory);
+        res.status(200).send(oneVisit);
     } catch (error) {
         res.status(500).send(error);
     }
 });
 
-router.post("/history", async (req, res) => {
-    const history = new History(req.body);
+router.post("/visit", async (req, res) => {
+    const visit = new Visit(req.body);
     try {
-        await history.save();
-        res.status(201).send(history);
+        await visit.save();
+        res.status(201).send(visit);
     } catch (error) {
         res.status(500).send(error);
     }
 });
 
-router.put("/history/:id", async (req, res) => {
+router.put("/visit/:id", async (req, res) => {
     const { id } = req.params;
     const update = req.body;
     try {
-        let response = await History.findOneAndUpdate({ _id: id }, update);
+        let response = await Visit.findOneAndUpdate({ _id: id }, update);
         res.status(200).send(response);
     } catch (error) {
         res.status(500).send(error);
     }
 });
 
-router.delete("/history/:id", async (req, res) => {
+router.delete("/visit/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        await History.deleteOne({ _id: id });
+        await Visit.deleteOne({ _id: id });
         res.status(200).send({
             message: `object with id ${id} has been deleted`,
         });

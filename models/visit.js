@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const historySchema = new mongoose.Schema(
+const visitSchema = new mongoose.Schema(
     {
         patientId: String,
         note: String,
@@ -9,6 +9,6 @@ const historySchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-const History = mongoose.model("History", historySchema);
+const Visit = mongoose.model("Visit", visitSchema);
 
-module.exports = History;
+module.exports = Visit;
