@@ -6,7 +6,7 @@ const router = new express.Router();
 router.get("/company", async (req, res) => {
     try {
         const company = await Company.find({});
-        res.status(200).send(company);
+        res.status(200).send(company[0]);
     } catch (error) {
         res.status(500).send(error);
     }
