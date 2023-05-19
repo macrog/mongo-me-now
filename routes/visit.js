@@ -22,7 +22,7 @@ router.get("/visit", async (req, res) => {
 router.get("/visit/:id", async (req, res) => {
     const { id } = req.params;
     try {
-        const oneVisit = await Visit.findOne({ _id: id });
+        const oneVisit = await Visit.find({ patientId: id });
 
         res.status(200).send(oneVisit);
     } catch (error) {
