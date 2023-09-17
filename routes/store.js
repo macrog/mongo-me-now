@@ -3,13 +3,28 @@ const Store = require("../models/store");
 
 const router = new express.Router();
 
+router.get("/store/total", async (req, res) => {
+    try {
+        const total = await Store.countDocuments();
+        res.status(200).send({ total: total });
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 router.get("/store", async (req, res) => {
     try {
         if (!!req.query.pointId) {
             const queryStore = await Store.find({
                 id: req.query.pointId,
             });
+
             res.status(200).send(queryStore);
+        } else if (!!req.query.limit && !!req.query.skip) {
+            const store = await Store.find({})
+                .skip(req.query.skip)
+                .limit(req.query.limit);
+            res.status(200).send(store);
         } else {
             const store = await Store.find({});
             res.status(200).send(store);
