@@ -3,10 +3,12 @@ const Image = require("../models/image");
 
 const router = new express.Router();
 
-router.get("/image/:code", async (req, res) => {
-    const { code } = req.params;
+router.get("/image/:visitPointCode", async (req, res) => {
+    const { visitPointCode } = req.params;
     try {
-        const oneImage = await Image.findOne({ code: code });
+        const oneImage = await Image.findOne({
+            code: visitPointCode.toString(),
+        });
 
         res.status(200).send(oneImage);
     } catch (error) {
