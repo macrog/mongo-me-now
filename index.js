@@ -5,6 +5,7 @@ const patientRouter = require("./routes/patient");
 const visitRouter = require("./routes/visit");
 const storeRouter = require("./routes/store");
 const companyRouter = require("./routes/company");
+const imageRouter = require("./routes/image");
 
 require("./db/mongoose");
 
@@ -15,5 +16,6 @@ app.use(patientRouter);
 app.use(visitRouter);
 app.use(storeRouter);
 app.use(companyRouter);
+app.use(imageRouter);
 
 app.listen(process.env.PORT || 3000);
