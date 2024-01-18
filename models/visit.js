@@ -4,7 +4,7 @@ const visitSchema = new mongoose.Schema(
     {
         patientId: String,
         note: String,
-        points: [String],
+        points: [{ id: String, comment: String }],
     },
     { timestamps: true }
 );
