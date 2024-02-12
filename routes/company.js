@@ -29,9 +29,11 @@ router.get("/appointment", async (req, res) => {
                         headers: {
                             "X-Company-Login": "fakecompany125",
                             "X-Token": response.data.token,
-                            "Access-Control-Allow-Origin": "x",
+                            "Access-Control-Allow-Origin": "*",
                             "Access-Control-Allow-Headers":
-                                "Origin, X-Requested-With, Content-Type, Accept",
+                                "X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Authorization",
+                            "Access-Control-Allow-Methods":
+                                "GET, POST, OPTIONS, PUT, DELETE, PATCH",
                         },
                     })
                     .then((response) => {
