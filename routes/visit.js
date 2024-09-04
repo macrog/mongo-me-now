@@ -3,6 +3,12 @@ const Visit = require("../models/visit");
 
 const router = new express.Router();
 
+/**
+ * @swagger
+ * /visit:
+ *   get:
+ *     summary: Return a list of visits
+ */
 router.get("/visit", async (req, res) => {
     try {
         if (!!req.query.patientId) {
@@ -19,6 +25,12 @@ router.get("/visit", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /visit/:id:
+ *   get:
+ *     summary: Return a specific visit by id
+ */
 router.get("/visit/:id", async (req, res) => {
     const { id } = req.params;
     try {
@@ -30,6 +42,12 @@ router.get("/visit/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /visit/:id:
+ *   post:
+ *     summary: Create a visit
+ */
 router.post("/visit", async (req, res) => {
     const visit = new Visit(req.body);
     try {
@@ -40,6 +58,12 @@ router.post("/visit", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /visit/:id:
+ *   put:
+ *     summary: Update a specific visit by id
+ */
 router.put("/visit/:id", async (req, res) => {
     const { id } = req.params;
     const update = req.body;
@@ -51,6 +75,12 @@ router.put("/visit/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /visit/:id:
+ *   delete:
+ *     summary: Delete a specific visit by id
+ */
 router.delete("/visit/:id", async (req, res) => {
     const { id } = req.params;
     try {

@@ -3,6 +3,12 @@ const Patient = require("../models/patient");
 
 const router = new express.Router();
 
+/**
+ * @swagger
+ * /patient:
+ *   get:
+ *     summary: Returns a list of patients
+ */
 router.get("/patient", async (req, res) => {
     try {
         if (!!req.query.patientName) {
@@ -49,7 +55,12 @@ router.get("/patient", async (req, res) => {
         res.status(500).send(error);
     }
 });
-
+/**
+ * @swagger
+ * /patient/:id:
+ *   get:
+ *     summary: Returns a patient by id
+ */
 router.get("/patient/:id", async (req, res) => {
     const { id } = req.params;
     try {
@@ -61,6 +72,12 @@ router.get("/patient/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /patient:
+ *   post:
+ *     summary: Create a patients
+ */
 router.post("/patient", async (req, res) => {
     const patient = new Patient(req.body);
     try {
@@ -71,6 +88,12 @@ router.post("/patient", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /patient/:id:
+ *   put:
+ *     summary: Update a patient by id
+ */
 router.put("/patient/:id", async (req, res) => {
     const { id } = req.params;
     const update = req.body;
@@ -88,6 +111,12 @@ router.put("/patient/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /patient:
+ *   delete:
+ *     summary: Delete a patient by id
+ */
 router.delete("/patient/:id", async (req, res) => {
     const { id } = req.params;
     try {

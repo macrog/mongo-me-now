@@ -6,6 +6,12 @@ const bookingApi = "https://user-api-v2.simplybook.me/admin";
 
 const router = new express.Router();
 
+/**
+ * @swagger
+ * /company:
+ *   get:
+ *     summary: Returns a company information
+ */
 router.get("/company", async (req, res) => {
     try {
         const company = await Company.find({});
@@ -15,6 +21,12 @@ router.get("/company", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /company:
+ *   get:
+ *     summary: Returns a list of appointments
+ */
 router.get("/appointment", async (req, res) => {
     try {
         axios

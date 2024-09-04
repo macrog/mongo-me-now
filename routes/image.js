@@ -3,6 +3,12 @@ const Image = require("../models/image");
 
 const router = new express.Router();
 
+/**
+ * @swagger
+ * /image/:visitID:
+ *   get:
+ *     summary: Returns a list of images for teh visit
+ */
 router.get("/image/:visitPointCode", async (req, res) => {
     const { visitPointCode } = req.params;
     try {

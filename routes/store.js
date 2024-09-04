@@ -2,7 +2,12 @@ const express = require("express");
 const Store = require("../models/store");
 
 const router = new express.Router();
-
+/**
+ * @swagger
+ * /store/total:
+ *   get:
+ *     summary: Returns a total number the points
+ */
 router.get("/store/total", async (req, res) => {
     try {
         const total = await Store.countDocuments();
@@ -12,6 +17,12 @@ router.get("/store/total", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /store:
+ *   get:
+ *     summary: Returns a list of the points
+ */
 router.get("/store", async (req, res) => {
     try {
         if (!!req.query.pointId) {
@@ -34,6 +45,12 @@ router.get("/store", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /store/:id:
+ *   get:
+ *     summary: Returns a specific point by id
+ */
 router.get("/store/:id", async (req, res) => {
     const { id } = req.params;
     try {
@@ -45,6 +62,12 @@ router.get("/store/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /store:
+ *   post:
+ *     summary: Create a point
+ */
 router.post("/store", async (req, res) => {
     const store = new Store(req.body);
     try {
@@ -55,6 +78,12 @@ router.post("/store", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /store/:id:
+ *   put:
+ *     summary: Update a point by id
+ */
 router.put("/store/:id", async (req, res) => {
     const { id } = req.params;
     const update = req.body;
@@ -66,6 +95,12 @@ router.put("/store/:id", async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /store/:id:
+ *   delete:
+ *     summary: Delete a point by id
+ */
 router.delete("/store/:id", async (req, res) => {
     const { id } = req.params;
     try {
